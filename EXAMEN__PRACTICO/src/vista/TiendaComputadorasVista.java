@@ -4,25 +4,28 @@
  */
 package vista;
 
+import java.util.Scanner;
+import modelo.TiendaComputadores;
+
 /**
  *
  * @author DELL
  */
+
 import java.util.ArrayList;
 import java.util.Scanner;
 import modelo.Computador;
-import modelo.TiendaComputadores;
 
-public class Main {
-    private static TiendaComputadores asptTiendaComputadores;
-    private static Scanner asptScanner = new Scanner(System.in);
+public class TiendaComputadorasVista {
+    private TiendaComputadores asptTiendaComputadores;
+    private final Scanner asptScanner;
 
-    public static void main(String[] args) {
+    public TiendaComputadorasVista() {
+        asptScanner = new Scanner(System.in);
         inicializarTienda();
-        menuPrincipal();
     }
 
-    private static void inicializarTienda() {
+    private void inicializarTienda() {
         System.out.print("Ingrese el nombre de la tienda: ");
         String asptNombreTienda = asptScanner.nextLine();
         System.out.print("Ingrese el nombre del propietario: ");
@@ -31,9 +34,10 @@ public class Main {
         String asptIdentificadorTributario = asptScanner.nextLine();
 
         asptTiendaComputadores = new TiendaComputadores(asptNombreTienda, asptPropietario, asptIdentificadorTributario);
+        menuPrincipal();
     }
 
-    private static void menuPrincipal() {
+    private void menuPrincipal() {
         boolean asptSalir = false;
         while (!asptSalir) {
             System.out.println("\nMenú principal");
@@ -68,7 +72,7 @@ public class Main {
         }
     }
 
-    private static void agregarComputadora() {
+    private void agregarComputadora() {
         System.out.print("Ingrese la marca de la computadora: ");
         String asptMarca = asptScanner.nextLine();
         System.out.print("Ingrese la cantidad de memoria (GB): ");
@@ -87,12 +91,12 @@ public class Main {
         System.out.println("Computadora agregada correctamente.");
     }
 
-    private static void contarComputadoras() {
+    private void contarComputadoras() {
         int asptCantidadComputadoras = asptTiendaComputadores.contarComputadoras();
         System.out.println("La tienda tiene " + asptCantidadComputadoras + " computadoras.");
     }
 
-    private static void buscarComputadorasPorMarca() {
+    private void buscarComputadorasPorMarca() {
         System.out.print("Ingrese la marca de las computadoras a buscar: ");
         String asptMarca = asptScanner.nextLine();
         ArrayList<Computador> asptComputadorasPorMarca = asptTiendaComputadores.buscarPorMarca(asptMarca);
@@ -112,7 +116,7 @@ public class Main {
         }
     }
 
-    private static void listarComputadoras() {
+    private void listarComputadoras() {
         ArrayList<Computador> asptComputadoras = asptTiendaComputadores.obtenerComputadoras();
 
         if (asptComputadoras.isEmpty()) {
